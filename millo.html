@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>MILOO HITAM 💖</title>
+
+		<style>
+			/* RESET */
+			* {
+				box-sizing: border-box;
+				font-family: 'Comic Sans MS', cursive;
+			}
+
+			/* BODY */
+			body {
+				margin: 0;
+				height: 100vh;
+				background: linear-gradient(160deg, #ff758c, #ff7eb3);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* CONTAINER UTAMA */
+			.container {
+				width: 100%;
+				max-width: 420px;
+				height: 100vh;
+				padding: 20px;
+				text-align: center;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				animation: fade 1.2s ease;
+			}
+
+			/* ANIMASI MASUK */
+			@keyframes fade {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			/* FOTO */
+			img {
+				width: 220px;
+				height: 220px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 6px solid rgba(255, 255, 255, 0.6);
+				margin: 0 auto 20px;
+				animation: pulse 2s infinite;
+			}
+
+			/* ANIMASI FOTO */
+			@keyframes pulse {
+				0% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.04);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+
+			/* JUDUL */
+			h1 {
+				font-size: 26px;
+				margin: 10px 0;
+			}
+
+			/* TEKS */
+			p {
+				font-size: 18px;
+				min-height: 60px;
+				padding: 0 10px;
+			}
+
+			/* BUTTON UMUM */
+			button {
+				background: white;
+				color: #ff4d6d;
+				border: none;
+				border-radius: 30px;
+				padding: 14px;
+				font-size: 16px;
+				margin: 8px 20px;
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+			/* INPUT FILE */
+			input[type='file'] {
+				margin-top: 10px;
+				color: white;
+			}
+
+			/* AREA INPUT PESAN DIA */
+			.input-area {
+				margin-top: 15px;
+				display: flex;
+				gap: 8px;
+				justify-content: center;
+			}
+
+			/* INPUT TEKS */
+			.input-area input {
+				flex: 1;
+				padding: 12px;
+				border-radius: 20px;
+				border: none;
+				outline: none;
+				font-size: 14px;
+			}
+
+			/* BUTTON KIRIM PESAN */
+			.input-area button {
+				padding: 12px 16px;
+				border-radius: 20px;
+				border: none;
+				background: #ff4d6d;
+				color: white;
+				font-weight: bold;
+			}
+
+			/* HASIL PESAN DIA */
+			#hasilPesan {
+				margin-top: 15px;
+				font-size: 18px;
+				background: rgba(255, 255, 255, 0.95);
+				color: #ff4d6d;
+				padding: 14px;
+				border-radius: 20px;
+				animation: fadeUp 0.8s ease;
+			}
+
+			/* ANIMASI PESAN */
+			@keyframes fadeUp {
+				from {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			/* HATI BESAR SAAT KLIK */
+			.heart {
+				position: fixed;
+				font-size: 60px;
+				pointer-events: none;
+				animation: heartPop 1s ease forwards;
+				transform: translate(-50%, -50%);
+			}
+
+			/* ANIMASI HATI */
+			@keyframes heartPop {
+				0% {
+					transform: translate(-50%, -50%) scale(0);
+					opacity: 0;
+				}
+				40% {
+					transform: translate(-50%, -50%) scale(1.2);
+					opacity: 1;
+				}
+				100% {
+					transform: translate(-50%, -120%) scale(1);
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<img id="foto" src="millo.PNG" alt="Foto Kamu 💕" />
+
+			<h1>HALLO MILO HITAM</h1>
+			<p id="kata">COBA KLIK DI BAWAH INI YA HITAM </p>
+
+			<button onclick="gantiKata()">💘 PENCETTTTTTTTT</button>
+
+			<input type="file" accept="image/*" onchange="loadFoto(event)" />
+		</div>
+		<div class="input-area">
+			<input type="text" id="pesanDia" placeholder="Tulis kata kamu di sini 💌" />
+			<button onclick="tampilkanPesan()">Kirim 💖</button>
+		</div>
+
+		<div id="hasilPesan"></div>
+
+		<script>
+			const kataBucin = [
+				'HP-ku aja lowbat, tapi cintaku ke kamu full 🔋❤️',
+				'Aku gak butuh WiFi, asal kamu connect ke hatiku 📶💖',
+				'Kamu itu rumah, pulang paling nyaman 🏡💕',
+				'Kalau kamu notifikasi, aku langsung senyum 😳📱',
+				'Aku bukan photographer, tapi kamu fokus hidupku 📸❤️',
+				'Satu HP di tangan, satu kamu di hati 💘'
+			];
+
+			function gantiKata() {
+				const random = Math.floor(Math.random() * kataBucin.length);
+				document.getElementById('kata').innerText = kataBucin[random];
+			}
+
+			function loadFoto(event) {
+				document.getElementById('foto').src = URL.createObjectURL(event.target.files[0]);
+			}
+			document.addEventListener('click', function (e) {
+				const heart = document.createElement('div');
+				heart.className = 'heart';
+				heart.innerText = '❤️';
+
+				heart.style.left = e.clientX + 'px';
+				heart.style.top = e.clientY + 'px';
+
+				document.body.appendChild(heart);
+
+				setTimeout(() => {
+					heart.remove();
+				}, 1000);
+			});
+		</script>
+	</body>
+</html>
